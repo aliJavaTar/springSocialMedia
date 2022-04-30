@@ -6,6 +6,8 @@ import com.javaboy.socialmedia.service.UserService;
 import com.javaboy.socialmedia.service.base.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User, Long, UserRepository> implements UserService {
 
@@ -15,6 +17,12 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long, UserRepository>
     }
 
     private final UserRepository userRepository;
+
+    public User registerUser(User user) {
+        return this.userRepository.save(user);
+    }
+
+
 
     @Override
     public User findByUsername(String username) {
