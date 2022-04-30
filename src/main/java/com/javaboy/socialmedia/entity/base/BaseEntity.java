@@ -8,11 +8,12 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.TimeZone;
 
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
+@MappedSuperclass
 public class BaseEntity<ID extends Serializable> {
     private static final String UPDATE_AT = "updated_at";
     private static final String CREATED_AT = "created_at";
@@ -20,9 +21,9 @@ public class BaseEntity<ID extends Serializable> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ID id;
     @Column(name = UPDATE_AT)
-    private LocalDateTime updatedAt;
+    private LocalDateTime updatedAt = LocalDateTime.now();
     @Column(name = CREATED_AT)
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     public BaseEntity() {
     }
